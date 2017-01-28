@@ -79,8 +79,6 @@ func serveListener(h http.Handler, listener net.Listener) {
 	// This allows packages like expvar to continue working as expected.
 	http.Handle("/", h)
 
-	log.Println("Starting kami on", listener.Addr())
-
 	graceful.HandleSignals()
 	bind.Ready()
 	graceful.PreHook(func() { log.Printf("kami received signal, gracefully stopping") })
